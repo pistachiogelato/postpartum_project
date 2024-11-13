@@ -3,21 +3,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'emotional_management/css/style.css' %}">
+    <title>Register - Women's Wellness Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 <body>
-    <div class="form-container">
-        <h2>Register</h2>
-        <form method="post">
+    <div class="container">
+        <form id="registrationForm" class="registration-form">
             {% csrf_token %}
-            {{ form.as_p }}
-            {% if form.errors %}
-                <div class="error-message">{{ form.errors }}</div>
-            {% endif %}
-            <button type="submit">Register</button>
+            <div class="form-group">
+                <label for="nickname">Nickname *</label>
+                <input type="text" id="nickname" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="familyName">Family Name *</label>
+                <input type="text" id="familyName" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Age Range *</label>
+                <div class="age-options">
+                    <label class="age-option">
+                        <input type="radio" name="age" value="under18" required>
+                        <span>Under 18</span>
+                    </label>
+                    <label class="age-option">
+                        <input type="radio" name="age" value="18-24">
+                        <span>18-24</span>
+                    </label>
+                    <label class="age-option">
+                        <input type="radio" name="age" value="25-44">
+                        <span>25-44</span>
+                    </label>
+                    <label class="age-option">
+                        <input type="radio" name="age" value="above45">
+                        <span>45 and above</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Role *</label>
+                <div class="role-options">
+                    <button type="button" class="role-btn" data-role="admin">Administrator</button>
+                    <button type="button" class="role-btn" data-role="partner">Partner</button>
+                    <button type="button" class="role-btn" data-role="family">Family Member</button>
+                    <button type="button" class="role-btn" data-role="friend">Friend</button>
+                
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Fertility Status</label>
+                <div class="fertility-options">
+                    <label class="fertility-option">
+                        <input type="radio" name="fertility" value="pregnant">
+                        <span>Pregnant</span>
+                    </label>
+                    <label class="fertility-option">
+                        <input type="radio" name="fertility" value="postpartum">
+                        <span>Postpartum</span>
+                    </label>
+                    <label class="fertility-option">
+                        <input type="radio" name="fertility" value="planning">
+                        <span>Planning</span>
+                    </label>
+                    <label class="fertility-option">
+                        <input type="radio" name="fertility" value="no_planning">
+                        <span>No Planning</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Preferences (Select all that apply)</label>
+                <div class="preference-options">
+                    <label class="preference-option">
+                        <input type="checkbox" name="preferences" value="emotional_support">
+                        <span>Emotional Support</span>
+                    </label>
+                    <label class="preference-option">
+                        <input type="checkbox" name="preferences" value="health_wellness">
+                        <span>Health & Wellness</span>
+                    </label>
+                    <label class="preference-option">
+                        <input type="checkbox" name="preferences" value="family_activities">
+                        <span>Family Activities</span>
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Register</button>
         </form>
-        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
     </div>
+    <script src="{% static 'js/register.js' %}"></script>
 </body>
-</html>
+</html> 

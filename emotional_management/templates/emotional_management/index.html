@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Women's Wellness Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Updated welcome section with new messaging -->
+        <div class="welcome-section">
+            <h1 class="title">Welcome to Women's Wellness Hub</h1>
+            <p class="subtitle">Your safe space for emotional support and family connection</p>
+            <p class="description">
+                Whether you're a new mother, working professional, or anyone in between,
+                join our community for emotional wellness and family support.
+            </p>
+        </div>
+        
+        <div class="button-container">
+            <button class="btn login-btn" onclick="window.location.href='{% url 'emotional_management:login' %}'">Login</button>
+            <button class="btn register-btn" onclick="window.location.href='{% url 'emotional_management:register' %}'">Register</button>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html> 

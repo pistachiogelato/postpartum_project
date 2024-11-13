@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings - Women's Wellness Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="settings-container">
+            <h1>User Settings</h1>
+            
+            <form id="settingsForm">
+                {% csrf_token %}
+                <div class="settings-flex-container">
+                    <!-- Left Section: Profile Settings -->
+                    <div class="settings-section">
+                        <h2>Profile Settings</h2>
+                        <div class="form-group">
+                            <label for="nickname">Nickname</label>
+                            <input type="text" id="nickname" name="nickname" value="{{ user_profile.nickname }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fertilityStatus">Fertility Status</label>
+                            <select id="fertilityStatus" name="fertility_status">
+                                <option value="pregnant" {% if user_profile.fertility_status == 'pregnant' %}selected{% endif %}>Pregnant</option>
+                                <option value="postpartum" {% if user_profile.fertility_status == 'postpartum' %}selected{% endif %}>Postpartum</option>
+                                <option value="planning" {% if user_profile.fertility_status == 'planning' %}selected{% endif %}>Planning</option>
+                                <option value="no_planning" {% if user_profile.fertility_status == 'no_planning' %}selected{% endif %}>No Planning</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Right Section: Preferences -->
+                    <div class="settings-section">
+                        <h2>Preferences</h2>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="emotional_support" 
+                                       {% if user_preferences.emotional_support %}checked{% endif %}>
+                                Emotional Support
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health_wellness"
+                                       {% if user_preferences.health_wellness %}checked{% endif %}>
+                                Health & Wellness
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="family_activities"
+                                       {% if user_preferences.family_activities %}checked{% endif %}>
+                                Family Activities
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">Save</button>
+                    <a href="{% url 'emotional_management:dashboard' %}" class="back-btn">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/settings.js' %}"></script>
+</body>
+</html> 

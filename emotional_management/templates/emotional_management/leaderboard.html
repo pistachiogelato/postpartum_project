@@ -1,2 +1,74 @@
 {% load static %}
-{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Progress - Women's Wellness Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/leaderboard.css' %}">
+    <!-- Add Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Member', 'Completion Percentage'],
+                {% for member in members_progress %}
+                    ['{{ member.nickname }}', {{ member.completion_rate }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Family Task Progress',
+                pieHole: 0.4,  // Creates a donut chart
+                colors: [
+                    {% for member in members_progress %}
+                        '{{ member.color }}',  // Add member's color for each segment
+                    {% endfor %}
+                ],
+                legend: { position: 'top' },
+                pieSliceText: 'percentage',
+                backgroundColor: 'transparent',
+                chartArea: { width: '100%', height: '80%' }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('progress-chart'));
+            chart.draw(data, options);
+        }
+
+        // Make chart responsive to window resize
+        window.addEventListener('resize', drawChart);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-container">
+            <h1>Family Task Progress</h1>
+            
+            <!-- Google Chart: Progress Chart -->
+            <div id="progress-chart" style="width: 100%; height: 500px;"></div>
+            <!--
+            <div class="progress-text" style="text-align: center;">
+                <span class="percentage">{{ completion_rate }}%</span>
+                <span class="label">Completed</span>
+            </div>
+            -->
+            <!-- Rest of the code remains the same -->
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Tasks</span>
+                    <span class="stat-value">{{ total_tasks }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Completed</span>
+                    <span class="stat-value">{{ completed_tasks }}</span>
+                </div>
+            </div>
+            
+            <a href="{% url 'emotional_management:dashboard' %}" class="back-btn">Back</a>
+        </div>
+    </div>
+</body>
+</html>

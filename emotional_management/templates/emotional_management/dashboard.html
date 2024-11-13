@@ -1,0 +1,138 @@
+{% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Headquarters - Women's Wellness Hub</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <!-- top nav -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="{% url 'emotional_management:dashboard' %}" class="nav-link active">Home</a>
+            <a href="{% url 'emotional_management:leaderboard' %}" class="nav-link">Leaderboard</a>
+            <a href="{% url 'emotional_management:settings' %}" class="nav-link">Settings</a>
+            <a href="{% url 'emotional_management:logout' %}" class="nav-link logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <!-- main part -->
+    <div class="dashboard-container">
+        <!-- headline -->
+        <div class="welcome-title">
+            <h1>Welcome to {{ user.userprofile.family_name }} Family's Headquarters!</h1>
+        </div>
+
+        <!--mood tracker admin modified only -->
+        <div class="mood-tracker-section">
+            <h3 class="mood-tracker-title">
+                {% if user_profile.role == 'admin' %}
+                    How are you feeling today?
+                {% else %}
+                    Administrator's Mood Today
+                {% endif %}
+            </h3>
+            <div class="mood-tracker">
+                <div class="mood-slider-container">
+                    <input type="range" 
+                           class="mood-slider" 
+                           min="0" 
+                           max="100" 
+                           value="{% if user_profile.role == 'admin' %}{{ user_profile.mood }}{% else %}{{ admin_mood }}{% endif %}"
+                           {% if user_profile.role != 'admin' %}disabled{% endif %}>
+                    <span class="mood-value">{{ admin_mood }}</span>
+                </div>
+            </div>
+            <div class="encouragement"></div>
+        </div>
+
+        <!-- Family Art Corner section -->
+        <div class="family-art-section">
+            <h3>Family Art Corner</h3>
+            <!-- Add debug info display -->
+            <div id="debugInfo" style="display: none;">
+                <pre></pre>
+            </div>
+            <div class="keyword-input-section">
+                <form id="keywordForm" class="keyword-form">
+                    <input type="text" 
+                           id="keyword" 
+                           name="keyword" 
+                           placeholder="Add a family keyword (max 3 per day)"
+                           maxlength="50"
+                           required>
+                    <button type="submit" id="submitKeyword">Add Keyword</button>
+                </form>
+                <div class="keywords-display">
+                    <h4>Today's Family Keywords</h4>
+                    <div id="keywordsList" class="keywords-list"></div>
+                    <div id="remainingSlots" class="remaining-slots"></div>
+                </div>
+                <div id="artDisplay" class="art-display">
+                    <!-- Art will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- tasks and feifei quiz -->
+        <div class="main-content">
+            <!-- tasks in left -->
+            <div class="tasks-section">
+                <h3>Daily Tasks</h3>
+                <div class="tasks-list">
+                    {% if tasks %}
+                        {% for task in tasks %}
+                            <div class="task-item" data-task-id="{{ task.id }}" data-task-type="{{ task.task_type }}">
+                                <input type="checkbox" 
+                                       id="task-{{ task.id }}" 
+                                       {% if task.completed %}checked{% endif %}>
+                                <div class="task-content">
+                                    <label for="task-{{ task.id }}">{{ task.description }}</label>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-tasks">
+                            <p>{% if show_to_be_continued %}
+                                To be continued...
+                               {% else %}
+                                {% if is_loading %}
+                                    Generating new tasks...
+                                {% else %}
+                                    No tasks available
+                                {% endif %}
+                               {% endif %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- feifei quiz in right -->
+            <div class="feifei-section">
+                <div class="feifei-container">
+                    <img src="{% static 'images/feifei.png' %}" class="feifei-image" alt="Feifei">
+                    <div class="feifei-text">Click me for daily quiz!</div>
+                </div>
+                <div class="quiz-container">
+                    <!-- Quiz will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this near the top of your template -->
+    <script>
+        // Ensure CSRF token is available
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get CSRF token from the cookie
+            const csrfToken = '{{ csrf_token }}';
+            // Store it in a data attribute on the body
+            document.body.dataset.csrfToken = csrfToken;
+        });
+    </script>
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html> 
