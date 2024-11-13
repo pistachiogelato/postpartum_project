@@ -1,0 +1,225 @@
+ /* Form container */
+.registration-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;  
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 600px;  
+    margin: 2rem auto;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 2rem;  
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: #555;
+    font-size: 1.1rem;  
+    font-weight: 500;
+}
+
+/* Text inputs */
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 1rem 1.2rem; 
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem; 
+    transition: all 0.3s ease;
+}
+
+/* Age selection */
+.age-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.age-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    padding: 1.2rem;  
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.age-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.age-option span {
+    font-size: 1.1rem; 
+    color: #555;
+}
+
+.age-option:hover {
+    border-color: #f8b9d4;
+    background: #fff;
+}
+
+.age-option.selected,
+.age-option input[type="radio"]:checked + span {
+    background: #f8b9d4;
+    border-color: #f8b9d4;
+    color: #fff;
+}
+
+/* Button styles  */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn, .next-btn, .back-btn, .submit-btn {
+    padding: 0.8rem 2rem;  
+    font-size: 1rem;      
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;    
+    text-align: center;
+}
+
+.next-btn, .submit-btn {
+    background: #f8b9d4;
+    color: white;
+}
+
+.back-btn {
+    background: #ddd;
+    color: #666;
+}
+
+.btn:hover, .next-btn:hover, .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Role selection */
+.role-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.role-btn {
+    padding: 1.2rem;  
+    font-size: 1.1rem;  
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.role-btn:hover {
+    border-color: #f8b9d4;
+}
+
+.role-btn.selected {
+    background: #f8b9d4;
+    border-color: #f8b9d4;
+    color: white;
+}
+
+/* Fertility options styles */
+.fertility-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 两列布局 */
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.fertility-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fertility-option input[type="radio"] {
+    margin-right: 1rem;
+    width: 20px;
+    height: 20px;
+}
+
+.fertility-option span {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.fertility-option:hover {
+    border-color: #f8b9d4;
+}
+
+.fertility-option input[type="radio"]:checked + span {
+    color: #f8b9d4;
+}
+
+.fertility-option:has(input[type="radio"]:checked) {
+    border-color: #f8b9d4;
+    background: rgba(248, 185, 212, 0.1);
+}
+
+/* Preference options styles */
+.preference-options {
+    display: grid;
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.preference-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.preference-option input[type="checkbox"] {
+    margin-right: 1rem;
+    width: 20px;
+    height: 20px;
+}
+
+.preference-option span {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.preference-option:hover {
+    border-color: #f8b9d4;
+}
+
+.preference-option input[type="checkbox"]:checked + span {
+    color: #f8b9d4;
+}
+
+.preference-option:has(input[type="checkbox"]:checked) {
+    border-color: #f8b9d4;
+    background: rgba(248, 185, 212, 0.1);
+}

@@ -11,11 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,6 +94,9 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
             'ssl':{'ssl-disabled': True},
+            'connect_timeout': 100,
+            'read_timeout': 100,
+            'write_timeout': 100,
         },
     }
 }
@@ -146,4 +146,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'emotional_management.User'
+#AUTH_USER_MODEL = 'emotional_management.User'

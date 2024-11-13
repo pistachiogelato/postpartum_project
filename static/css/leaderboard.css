@@ -1,0 +1,146 @@
+.leaderboard-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.leaderboard-section {
+    margin-bottom: 2rem;
+}
+
+.leaderboard-list {
+    margin-top: 1rem;
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.rank {
+    font-weight: bold;
+    margin-right: 1rem;
+    color: #f8b9d4;
+}
+
+.name {
+    flex-grow: 1;
+}
+
+.score {
+    color: #666;
+}
+
+.back-btn {
+    display: block;
+    width: 200px;
+    padding: 0.8rem 1.5rem;
+    background: #f8b9d4;
+    color: white;
+    text-decoration: none;
+    text-align: center; 
+    line-height: 1.2rem; 
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin: 2rem auto 0;  
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #f69cbd;
+    transform: translateY(-2px);
+}
+
+.progress-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#progress-chart {
+    margin: 0 auto;
+    position: relative;
+}
+
+.progress-text {
+    position: relative;
+    z-index: 1;
+}
+
+.circular-progress {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 2rem auto;
+}
+
+.progress-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.progress-ring-circle-bg {
+    stroke-dasharray: none;
+}
+
+.progress-ring-circle {
+    transition: stroke-dashoffset 1s ease;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-linecap: round;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.percentage {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f8b9d4;
+}
+
+.label {
+    display: block;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f8b9d4;
+} 
